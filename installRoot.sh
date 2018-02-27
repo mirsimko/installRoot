@@ -67,7 +67,7 @@ else
 fi
 
 sudo echo ;
-sudo apt-get --ignore-missing --yes --force-yes install qtcreator git dpkg-dev gcc g++ make cmake binutils libx11-dev libxpm-dev libxft-dev libxext-dev libqt4-dev python python-dev;
+sudo apt-get --ignore-missing --yes --force-yes install qtcreator git dpkg-dev gcc g++ make cmake binutils libx11-dev libxpm-dev libxft-dev libxext-dev libqt4-dev python python-dev lzma-dev libgl2ps-dev libxml2-dev openssl;
 
 if [ ! -d /opt/$NAME/root-build ]; then
 
