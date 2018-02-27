@@ -17,7 +17,7 @@ if [ $# -eq 0 ]; then
     exit
 fi
 
-if [ $# -eq 2 ]; then
+if [ $# -ge 2 ]; then
     echo "Will download file from $2";
     WEB=$2;
 else
