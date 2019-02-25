@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #------------------------------------------------------------------------
 # - made by Peter Svihra, FNSPE CTU in Prague
@@ -24,11 +24,16 @@ while getopts ":hc:w:s:" opt; do
 done
 
 echo "#########################################################################################"
+echo
+echo "Starting ROOT installation, when asked type in sudo password and go for a coffee"
+echo
+echo "#########################################################################################"
 echo "Downloading file from: $WEB"
 echo "Using shell: $SHELL"
 echo "Number of cores: $CORES"
 
 NAME=$WEB;
+echo $NAME
 NAME=${NAME/https\:\/\/root\.cern\.ch\/download\//};
 NAME=${NAME/\.source\.tar\.gz/};
 FILE=~/Downloads/$NAME.tar.gz;
@@ -47,16 +52,14 @@ else
     fi
 fi
 
-if [[ $CORES =~ ^-?[0-9]+$ ]]; then
-    CORES=$1;
-else
+if [[ ! $CORES =~ ^-?[0-9]+$ ]]; then
   	echo "#########################################################################################";
   	echo "Not valid cores count, using only one";
   	CORES=1;
 fi
 
 sudo echo ;
-sudo apt-get --ignore-missing --yes --allow install qtcreator git dpkg-dev gcc g++ make cmake binutils libx11-dev libxpm-dev libxft-dev libxext-dev libqt4-dev python python-dev lzma-dev libgl2ps-dev libxml2-dev openssl;
+sudo apt-get --ignore-missing --yes --force-yes install qtcreator git dpkg-dev gcc g++ make cmake binutils libx11-dev libxpm-dev libxft-dev libxext-dev libqt4-dev python python-dev lzma-dev libgl2ps-dev libxml2-dev openssl;
 
 if [ ! -d /opt/$NAME/root-build ]; then
 
