@@ -42,7 +42,7 @@ if [ -f $FILE ]; then
     echo "#########################################################################################";
     echo "$FILE already exists -> skipping download"
 else
-    if ! wget --show-progress --output-document=$FILE $WEB ; then
+    if ! wget --output-document=$FILE $WEB ; then
         echo "#########################################################################################";
         echo "Could not download the file $WEB";
         exit;
