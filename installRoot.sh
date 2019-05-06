@@ -14,7 +14,7 @@ SHELL=bash
 
 while getopts ":hc:w:s:" opt; do
     case "${opt}" in
-        h) echo "./installRoot.sh -c nCores -w directWebLink -s shellType";;
+        h) echo "./installRoot.sh -c nCores -w directWebLink -s shellType"; exit 1;;
         c) CORES=${OPTARG};;
         w) WEB=${OPTARG};;
         s) SHELL=${OPTARG};;
@@ -34,7 +34,7 @@ echo "Number of cores: $CORES"
 
 NAME=$WEB;
 echo $NAME
-NAME=${NAME/https\:\/\/root\.cern\.ch\/download\//};
+NAME=${WEB##*/}
 NAME=${NAME/\.source\.tar\.gz/};
 FILE=~/Downloads/$NAME.tar.gz;
 
@@ -128,6 +128,7 @@ cat <<EOT >> ~/.bashrc
 source /opt/$NAME/root-install/bin/thisroot.sh
 EOT
 elif [ $SHELL == "zsh" ]; then
+echo "#########################################################################################";
 echo "Using zsh";
 cat <<EOT >> ~/.zshrc
 #
