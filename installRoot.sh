@@ -59,7 +59,7 @@ if [[ ! $CORES =~ ^-?[0-9]+$ ]]; then
 fi
 
 sudo echo ;
-sudo apt-get --ignore-missing --yes --force-yes install qtcreator git dpkg-dev gcc g++ make cmake binutils libx11-dev libxpm-dev libxft-dev libxext-dev libqt4-dev python python-dev lzma-dev libgl2ps-dev libxml2-dev openssl;
+sudo apt-get --ignore-missing --yes --force-yes install git dpkg-dev gcc g++ make cmake binutils libx11-dev libxpm-dev libxft-dev libxext-dev lzma-dev libgl2ps-dev libxml2-dev openssl;
 
 if [ ! -d /opt/$NAME/root-build ]; then
 
@@ -110,7 +110,7 @@ echo "build dir - changed directory";
 
 echo "#########################################################################################";
 echo "running cmake";
-sudo cmake -DCMAKE_INSTALL_PREFIX=/opt/$NAME/root-install -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_LINKER=ld -Dall=ON $SOURCE
+sudo cmake -DCMAKE_INSTALL_PREFIX=/opt/$NAME/root-install -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_LINKER=ld -Dall=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.8.so -DPYTHON_INCLUDE_DIR=/usr/include/python3.8 -DCMAKE_CXX_STANDARD=17 $SOURCE
 
 sudo make -j$CORES
 sudo make install
